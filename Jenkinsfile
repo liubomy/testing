@@ -6,7 +6,7 @@ stage ("lint dockerfile") {
         }
     }
     steps {
-        sh 'hadolint Dockerfile | tee -a hadolint_lint.txt'
+        sh 'hadolint ./Dockerfile | tee -a hadolint_lint.txt'
     }
     post {
         always {

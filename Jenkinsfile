@@ -1,16 +1,12 @@
-stage ("lint dockerfile") {
-    agent {
-        docker {
-            image 'hadolint/hadolint:latest-debian'
-            //image 'ghcr.io/hadolint/hadolint:latest-debian'
-        }
+
+pipeline {
+  agent any
+  stages {
+    stage('hadolint') {
+      steps {
+        sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
+        archiveArtifacts artifacts: 'hadolint_lint.txt', followSymlinks: false
+      }
     }
-    steps {
-        sh 'hadolint ./Dockerfile | tee -a hadolint_lint.txt'
-    }
-    post {
-        always {
-            archiveArtifacts 'hadolint_lint.txt'
-        }
-    }
+  }
 }

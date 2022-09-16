@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('hadolint') {
       steps {
-        sh 'hadolint dockerfiles/* | tee -a hadolint_lint.txt'
+        sh 'docker run --rm -i hadolint/hadolint < Dockerfile | tee -a hadolint_lint.txt'
         archiveArtifacts artifacts: 'hadolint_lint.txt', followSymlinks: false
       }
     }

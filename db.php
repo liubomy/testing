@@ -3,8 +3,8 @@ session_start();
 
 $conn = mysqli_connect(
   'localhost',
-  'root',
-  'password123',
+  'rootadmin',
+  'SecPassworDED',
   'php_mysql_crud'
 ) or die(mysqli_erro($mysqli));
 
